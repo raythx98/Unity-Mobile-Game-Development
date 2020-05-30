@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         GameObject.Find("LevelLoader").GetComponent<LevelLoaderFrom2>().LoadLevel();
     }
 

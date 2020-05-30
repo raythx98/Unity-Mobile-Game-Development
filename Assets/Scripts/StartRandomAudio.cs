@@ -14,7 +14,7 @@ public class StartRandomAudio : MonoBehaviour
 
     void Start()
     {
-        Destroy(GameObject.Find("GameAudio"));
+        Destroy(GameObject.Find("GameBGM"));
         //audioSource = gameObject.GetComponent<AudioSource>();
     }
 
