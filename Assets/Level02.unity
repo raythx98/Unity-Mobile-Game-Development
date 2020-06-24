@@ -831,9 +831,10 @@ GameObject:
   - component: {fileID: 142768098}
   - component: {fileID: 142768097}
   - component: {fileID: 142768096}
+  - component: {fileID: 142768099}
   m_Layer: 0
   m_Name: Eagle
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -394.56, y: -226.24}
+  m_AnchoredPosition: {x: -401.81, y: -222.18}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142768096
@@ -873,7 +874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 723736103}
+  target: {fileID: 1256326107}
 --- !u!114 &142768097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +893,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 7
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -938,6 +939,27 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!50 &142768099
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142768094}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.5
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &163511049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,7 +1050,7 @@ GameObject:
   - component: {fileID: 181451856}
   m_Layer: 10
   m_Name: EagleGFX
-  m_TagString: eagle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,8 +1155,8 @@ MonoBehaviour:
   player: {fileID: 723736103}
   playerMovement: {fileID: 723736097}
   attackPoint: {fileID: 1863198384}
-  attackRange: 1
-  attackDamage: 5
+  attackRange: 2
+  attackDamage: 10
   senseRange: 2
   players:
     serializedVersion: 2
@@ -1225,11 +1247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5e79e842e895c4f9f63d755a07261c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midPoint: {fileID: 219625692}
-  enemies:
-    serializedVersion: 2
-    m_Bits: 1024
-  range: 20
 --- !u!1 &238080423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3901,7 +3918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723736096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.22, y: -226.67, z: 0}
+  m_LocalPosition: {x: -409.8, y: -224.66, z: 0}
   m_LocalScale: {x: 1.1073459, y: 1.1073459, z: 1.1073459}
   m_Children:
   - {fileID: 1256326107}
@@ -5230,7 +5247,7 @@ GameObject:
   - component: {fileID: 984105158}
   m_Layer: 5
   m_Name: Eagle Health
-  m_TagString: eagle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5868,7 +5885,7 @@ GameObject:
   - component: {fileID: 1254566236}
   m_Layer: 10
   m_Name: SNinja_idle 1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
