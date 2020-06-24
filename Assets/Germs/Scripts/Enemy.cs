@@ -7,12 +7,6 @@ public class Enemy : MonoBehaviour
     // for animation
     public Animator animator;
 
-    // for health bar
-    public int maxHealth = 100;
-    int currentHealth;
-    public EnemyHealth healthBar;
-    private bool isDead = false;
-
     // to store player and face player direction
     public Transform player;
     private float distance;
@@ -28,14 +22,6 @@ public class Enemy : MonoBehaviour
     float nextAttackTime = 0f;
 
     public bool facingLeft = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // set health bar
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-    }
 
     void Update()
     {
@@ -71,26 +57,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void takeDamage(int damage)
-    {
-        if (!isDead)
-        {
-            currentHealth -= damage;
-            // update health bar
-            healthBar.SetHealth(currentHealth);
-
-            // play hurt animation
-            animator.SetTrigger("Hurt");
-        }
-
-        // check if dead
-        if (currentHealth <= 0 && !isDead)
-        {
-            Die();
-            isDead = true;
-        }
-    }
-
     public void Flip() 
     {
         Vector3 theScale = transform.localScale;
@@ -108,17 +74,6 @@ public class Enemy : MonoBehaviour
         {
             player.GetComponent<MovementManager>().takeDamage(attackDamage);
         }        
-    }
-    
-    void Die()
-    {
-        // enemy died
-        animator.SetBool("isDead", true);
-
-        FindObjectOfType<AudioManager>().Play("EnemyKilled");
-
-        this.enabled = false;
-        GameObject.Find("gameCanvas").GetComponent<GameManager>().WinGame();
     }
 
     void OnDrawGizmosSelected()

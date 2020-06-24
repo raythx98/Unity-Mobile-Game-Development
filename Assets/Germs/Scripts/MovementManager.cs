@@ -96,7 +96,7 @@ public class MovementManager : MonoBehaviour
         {
             animator.SetBool("isJumping", false); // stop jumping animation
             onGround = true;
-        }
+        } 
     }
 
     void OnCollisionExit2D (Collision2D obj)
@@ -116,7 +116,7 @@ public class MovementManager : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             // deal damage
-            enemy.GetComponent<Enemy>().takeDamage(attackDamage);
+            enemy.GetComponent<DamageTaker>().takeDamage(attackDamage);
         }
     }
 
