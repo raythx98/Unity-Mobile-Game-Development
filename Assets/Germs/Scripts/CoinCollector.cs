@@ -15,6 +15,7 @@ public class CoinCollector : MonoBehaviour
             coinsText.text = noOfCoins.ToString();
 
             Destroy(other.gameObject);
+            FindObjectOfType<AudioManager>().Play("EnemyKilled");
         }
     }
 }
