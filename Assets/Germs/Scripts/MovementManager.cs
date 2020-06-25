@@ -18,6 +18,7 @@ public class MovementManager : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public LayerMask enemyLayers;
+    public LayerMask chestLayers;
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
@@ -75,7 +76,6 @@ public class MovementManager : MonoBehaviour
             if (CrossPlatformInputManager.GetButtonDown("Attack"))
             {
                 Attack();
-                FindObjectOfType<AudioManager>().Play("Sword");
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
@@ -94,6 +94,7 @@ public class MovementManager : MonoBehaviour
     {
         if (obj.gameObject.tag == "ground")
         {
+            FindObjectOfType<AudioManager>().Play("PlayerLand");
             animator.SetBool("isJumping", false); // stop jumping animation
             onGround = true;
         } 
@@ -115,8 +116,18 @@ public class MovementManager : MonoBehaviour
 
         foreach(Collider2D enemy in hitEnemies)
         {
+            FindObjectOfType<AudioManager>().Play("Sword");
             // deal damage
             enemy.GetComponent<DamageTaker>().takeDamage(attackDamage);
+        }
+
+        Collider2D[] hitChests = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, chestLayers); // detect chests
+
+        foreach(Collider2D chest in hitChests)
+        {
+            FindObjectOfType<AudioManager>().Play("ChestHit");
+            // deal damage
+            chest.GetComponent<Chest>().takeDamage(attackDamage);
         }
     }
 
