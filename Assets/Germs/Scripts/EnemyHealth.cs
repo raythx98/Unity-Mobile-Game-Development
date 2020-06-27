@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    
+    public GameObject barObj;
     public Slider slider;
 
     public void SetMaxHealth(int health)
@@ -17,5 +17,9 @@ public class EnemyHealth : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+        if (health <= 0) 
+        {
+            Destroy(barObj);
+        }
     }
 }

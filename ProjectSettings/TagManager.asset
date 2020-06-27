@@ -7,6 +7,9 @@ TagManager:
   - MM
   - player
   - ground
+  - item
+  - enemy
+  - gem
   layers:
   - Default
   - TransparentFX
@@ -16,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Obstacle
+  - Player
+  - Enemies
+  - Chests
   - 
   - 
   - 
@@ -46,4 +49,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2399400373
     locked: 0
