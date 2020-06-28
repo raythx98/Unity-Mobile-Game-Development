@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject panelUI;
     public GameObject PauseButton;
-    public GameObject winText;
-    public GameObject loseText;
+    public GameObject winImage;
+    public GameObject loseImage;
 
     public static string scene = "Level01";
     public static bool GameIsPaused = false;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public void Pause ()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         panelUI.SetActive(true);
         WinGameUI.SetActive(true);
         PauseButton.SetActive(false);
-        winText.SetActive(true);
+        winImage.SetActive(true);
     }
 
     public void LoseGame()
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         panelUI.SetActive(true);
         WinGameUI.SetActive(true);
         PauseButton.SetActive(false);
-        loseText.SetActive(true);
+        loseImage.SetActive(true);
     }
 
     public void LoadLevel()

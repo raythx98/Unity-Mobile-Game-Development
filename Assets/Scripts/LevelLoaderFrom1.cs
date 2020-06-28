@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class LevelLoaderFrom1 : MonoBehaviour
 {
-    public static string scene = "Level02";
+    public string scene;
     public Slider slider;
 
-    public void LoadLevel()
+    public void LoadLevel(string scene)
     {
+        this.scene = scene;
         StartCoroutine(LoadAsynchronously());
     }
 

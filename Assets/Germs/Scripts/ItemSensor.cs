@@ -10,6 +10,7 @@ public class ItemSensor : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("item").Length == 0
         && GameObject.FindGameObjectsWithTag("gem").Length == 0) 
         {
+            GameObject.Find("Countdown").GetComponent<CountdownTimer>().win = true;
             GameObject.Find("gameCanvas").GetComponent<GameManager>().WinGame();
         }
     }

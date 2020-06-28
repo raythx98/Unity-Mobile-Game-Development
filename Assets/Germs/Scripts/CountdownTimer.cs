@@ -6,7 +6,8 @@ using TMPro;
 public class CountdownTimer : MonoBehaviour
 {
     float currentTime = 0f;
-    float startTime = 100f;
+    float startTime = 50f;
+    public bool win = false;
 
     public TextMeshProUGUI countdownText;
 
@@ -19,8 +20,11 @@ public class CountdownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
-        countdownText.text = currentTime.ToString("F2");
+        if (!win)
+        {
+            currentTime -= 1 * Time.deltaTime;
+            countdownText.text = currentTime.ToString("F2");
+        }
 
         if (currentTime <= 0)
         {

@@ -9,8 +9,8 @@ public class GameMenu : MonoBehaviour
 
     public void PlayAgain()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene("Level02");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene("Level02");
     }
 
     public void MainMenu()
