@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class MovementManager : MonoBehaviour
@@ -27,6 +28,13 @@ public class MovementManager : MonoBehaviour
     int currentHealth;
     public HealthBar healthBar;
 
+    // for damage screen
+    [Header("Damage Screen")]
+    public Color damageColor;
+    public Image damageImage;
+    float colorSmoothing = 0.5f;
+    bool damageTaken;
+
     public bool isAlive = true;
 
     // Start is called before the first frame update
@@ -35,6 +43,8 @@ public class MovementManager : MonoBehaviour
         // set health bar
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        damageTaken = false;
     }
 
     // Update is called once per frame
@@ -79,6 +89,17 @@ public class MovementManager : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
+
+        // to display damage screen
+        if (damageTaken)
+        {
+            damageImage.color = damageColor;
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, colorSmoothing * Time.deltaTime);
+        }
+        damageTaken = false;
     }
 
     void Flip() 
@@ -133,6 +154,7 @@ public class MovementManager : MonoBehaviour
 
     public void takeDamage(int damage)
     {
+        damageTaken = true;
         currentHealth -= damage;
         // update health bar
         healthBar.SetHealth(currentHealth);
