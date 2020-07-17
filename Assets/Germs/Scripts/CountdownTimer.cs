@@ -6,7 +6,7 @@ using TMPro;
 public class CountdownTimer : MonoBehaviour
 {
     float currentTime = 0f;
-    float startTime = 50f;
+    float startTime = 0f;
     public bool win = false;
 
     public TextMeshProUGUI countdownText;
@@ -22,13 +22,13 @@ public class CountdownTimer : MonoBehaviour
     {
         if (!win)
         {
-            currentTime -= 1 * Time.deltaTime;
+            currentTime += 1 * Time.deltaTime;
             countdownText.text = currentTime.ToString("F2");
         }
 
-        if (currentTime <= 0)
+        if (currentTime >= 20f)
         {
-            countdownText.text = "0.00";
+            countdownText.text = "20.00";
             End();
         }
     }

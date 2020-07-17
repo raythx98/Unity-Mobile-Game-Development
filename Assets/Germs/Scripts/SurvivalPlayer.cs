@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class MovementManager : MonoBehaviour
+public class SurvivalPlayer : MonoBehaviour
 {
     public float moveSpeed, jumpHeight;
     public bool onGround = false;
@@ -14,30 +14,19 @@ public class MovementManager : MonoBehaviour
     // determine which way player is facing
     private bool faceRight = true;
 
-    // for attack
-    [Header("Attack")]
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
-    public int attackDamage = 40;
-    public LayerMask enemyLayers;
-    public LayerMask chestLayers;
-    public float attackRate = 2f;
-    float nextAttackTime = 0f;
-
     // for health bar
     [Header("Health Bar")]
     public int maxHealth = 100;
     int currentHealth;
     public HealthBar healthBar;
+    public bool isAlive = true;
 
     // for damage screen
     [Header("Damage Screen")]
     public Color damageColor;
     public Image damageImage;
     float colorSmoothing = 0.5f;
-    bool damageTaken;
-
-    public bool isAlive = true;
+    bool damageTaken = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +34,6 @@ public class MovementManager : MonoBehaviour
         // set health bar
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
-        damageTaken = false;
     }
 
     // Update is called once per frame
@@ -80,16 +67,6 @@ public class MovementManager : MonoBehaviour
             animator.SetBool("isJumping", true);
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
             onGround = false; // solved inconsistent jump height
-        }
-
-        // delay attack rate
-        if (Time.time >= nextAttackTime)
-        {
-            if (CrossPlatformInputManager.GetButtonDown("Attack"))
-            {
-                Attack();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
         }
 
         // to display damage screen
@@ -131,29 +108,6 @@ public class MovementManager : MonoBehaviour
         }
     }
 
-    void Attack() 
-    {
-        animator.SetTrigger("Attack"); // attack animation
-
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers); // detect enemies
-
-        foreach(Collider2D enemy in hitEnemies)
-        {
-            FindObjectOfType<AudioManager>().Play("Sword");
-            // deal damage
-            enemy.GetComponent<DamageTaker>().takeDamage(attackDamage);
-        }
-
-        Collider2D[] hitChests = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, chestLayers); // detect chests
-
-        foreach(Collider2D chest in hitChests)
-        {
-            FindObjectOfType<AudioManager>().Play("ChestHit");
-            // deal damage
-            chest.GetComponent<Chest>().takeDamage(attackDamage);
-        }
-    }
-
     public void takeDamage(int damage)
     {
         damageTaken = true;
@@ -181,12 +135,5 @@ public class MovementManager : MonoBehaviour
         this.enabled = false;
 
         GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame();
-    }
-    
-    void OnDrawGizmosSelected() 
-    {
-        if (attackPoint == null) 
-            return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
