@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CountdownTimer : MonoBehaviour
+public class SurvivalTimer : MonoBehaviour
 {
     float currentTime = 0f;
-    float startTime = 40f;
-    public bool win = false;
+    float startTime = 0f;
+    public bool lost = false;
 
     public TextMeshProUGUI countdownText;
 
@@ -20,21 +20,14 @@ public class CountdownTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!win)
+        if (!lost)
         {
-            currentTime -= 1 * Time.deltaTime;
+            currentTime += 1 * Time.deltaTime;
             countdownText.text = currentTime.ToString("F2");
         }
-
-        if (currentTime <= 0f)
+        else
         {
-            countdownText.text = "0.00";
-            End();
+            this.enabled = false;
         }
-    }
-
-    void End() {
-        this.enabled = false;
-        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame();
     }
 }
