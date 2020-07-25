@@ -5,8 +5,8 @@ using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    float currentTime = 0f;
-    float startTime = 40f;
+    public float currentTime = 0f;
+    public float startTime = 20f;
     public bool win = false;
 
     public TextMeshProUGUI countdownText;
@@ -35,6 +35,8 @@ public class CountdownTimer : MonoBehaviour
 
     void End() {
         this.enabled = false;
-        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame();
+        int coinRemain = GameObject.FindGameObjectsWithTag("item").Length;
+        int gemRemain = GameObject.FindGameObjectsWithTag("gem").Length;
+        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame((7-coinRemain)*100 + (1-gemRemain)*1000, "Treasure");
     }
 }

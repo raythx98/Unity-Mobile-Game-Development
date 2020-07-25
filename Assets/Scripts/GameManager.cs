@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject PauseButton;
     public GameObject winImage;
     public GameObject loseImage;
+    public int score;
+    public string game;
 
     public static string scene = "Level01";
     public static bool GameIsPaused = false;
@@ -29,16 +31,20 @@ public class GameManager : MonoBehaviour
         GameIsPaused = true;
     }
 
-    public void WinGame()
+    public void WinGame(int score, string game)
     {
+        this.score = score;
+        this.game = game;
         panelUI.SetActive(true);
         WinGameUI.SetActive(true);
         PauseButton.SetActive(false);
         winImage.SetActive(true);
     }
 
-    public void LoseGame()
+    public void LoseGame(int score, string game)
     {
+        this.score = score;
+        this.game = game;
         panelUI.SetActive(true);
         WinGameUI.SetActive(true);
         PauseButton.SetActive(false);

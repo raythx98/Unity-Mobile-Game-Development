@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
             {
                 saw = Instantiate(sawObject, new Vector3(12f, yPos, 0), Quaternion.identity);
             }
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(0.5f);
             Destroy(saw, 2f);
             enemyCount += 1;
         }

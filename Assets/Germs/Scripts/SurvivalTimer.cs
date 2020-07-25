@@ -5,7 +5,7 @@ using TMPro;
 
 public class SurvivalTimer : MonoBehaviour
 {
-    float currentTime = 0f;
+    public float currentTime = 0f;
     float startTime = 0f;
     public bool lost = false;
 

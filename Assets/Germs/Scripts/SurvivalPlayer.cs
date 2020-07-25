@@ -138,6 +138,7 @@ public class SurvivalPlayer : MonoBehaviour
         GameObject.Find("LeftSpawner").GetComponent<Spawner>().lost = true;
         GameObject.Find("RightSpawner").GetComponent<Spawner>().lost = true;
 
-        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame();
+        float score = GameObject.Find("Countdown").GetComponent<SurvivalTimer>().currentTime;
+        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame((int)(score * 100), "Survival");
     }
 }

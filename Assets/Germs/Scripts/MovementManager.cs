@@ -180,7 +180,9 @@ public class MovementManager : MonoBehaviour
         
         this.enabled = false;
 
-        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame();
+        int enemyLeft = GameObject.FindGameObjectsWithTag("enemy").Length;
+
+        GameObject.Find("gameCanvas").GetComponent<GameManager>().LoseGame(((2 - enemyLeft) * 500), "Battle");
     }
     
     void OnDrawGizmosSelected() 
