@@ -14,10 +14,9 @@ public class ChooseGame : MonoBehaviour
         GameObject.Find("LevelLoader").GetComponent<LevelLoaderFrom1>().LoadLevel("Level03");
     }
 
-    /*
     public void Play3rdGame()
     {
-        GameObject.Find("LevelLoader").GetComponent<LevelLoaderFrom1>().LoadLevel();
+        GameObject.Find("LevelLoader").GetComponent<LevelLoaderFrom1>().LoadLevel("Level04");
     }
-    */
+    
 }
